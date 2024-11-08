@@ -1,0 +1,417 @@
+<!DOCTYPE html>
+<html lang="ko">
+  <head>
+    <meta charset="UTF-8" />
+    <meta http-equiv="X-UA-Compatible" content="IE=edge" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <script src="https://code.jquery.com/jquery-3.7.1.js"></script>
+    <title>돌봄신청</title>
+  </head>
+  <style>
+    @import url("https://fonts.googleapis.com/css2?family=Noto+Sans+KR:wght@100..900&display=swap");
+    * {
+      margin: 0;
+      padding: 0;
+    }
+    a {
+      text-decoration: none;
+      outline: none;
+      color: inherit;
+    }
+
+    p {
+      font-family: "Noto Sans KR", sans-serif;
+    }
+
+    .header {
+      width: 100%;
+      display: flex;
+      position: fixed;
+      z-index: 10;
+      background-color: #fff;
+    }
+    .logo {
+      width: 15%;
+      text-align: center;
+      align-content: center;
+    }
+
+    .logo > img {
+      width: 50px;
+      height: 50px;
+    }
+
+    .nav {
+      width: 70%;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      gap: 50px;
+      z-index: 3;
+    }
+    .nav p {
+      width: 80px;
+      text-align: center;
+      cursor: pointer;
+    }
+    .nav > div {
+      font-family: "Noto Sans KR", sans-serif;
+      font-weight: 600;
+    }
+
+    .info {
+      width: 15%;
+      display: flex;
+      justify-content: center;
+      align-items: center;
+      gap: 10px;
+    }
+
+    .sub_me {
+      /* display: flex; */
+      display: none;
+      position: absolute;
+      width: 100%;
+      top: 50px;
+      left: 0px;
+      background-color: rgba(247, 243, 243, 0.568);
+      z-index: 1;
+      font-family: "Noto Sans KR", sans-serif;
+      font-weight: 700;
+    }
+
+    .sub1 {
+      width: 15%;
+    }
+
+    .sub2 {
+      width: 70%;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      gap: 50px;
+    }
+
+    .sub2 p {
+      width: 80px;
+      text-align: center;
+      color: black;
+      cursor: pointer;
+    }
+
+    .sub3 {
+      width: 15%;
+    }
+
+    /* main */
+
+    .menu_btn {
+      display: flex;
+      position: fixed;
+      top: 10%;
+      left: 5%;
+      z-index: 2;
+      font-family: "Noto Sans KR", sans-serif;
+      font-weight: 800;
+      font-size: xx-large;
+      gap: 20px;
+      color: #fff;
+      background-color: #211010;
+      padding: 0 15px;
+      cursor: pointer;
+    }
+    .ctn {
+      position: relative;
+    }
+    .ctn img {
+      width: 100%;
+      display: block;
+    }
+
+    .ctn p {
+      font-family: "Noto Sans KR", sans-serif;
+      font-weight: 500;
+      font-size: large;
+      text-align: center;
+      position: absolute;
+      top: 40%;
+      left: 60%;
+      color: #fff;
+      background-color: #211010;
+      padding: 1%;
+      border-radius: 20px;
+      cursor: pointer;
+    }
+
+    .ctn_02 {
+      position: relative;
+    }
+    .ctn_02 img {
+      width: 100%;
+      display: block;
+    }
+
+    .ctn_02 p {
+      font-family: "Noto Sans KR", sans-serif;
+      font-weight: 500;
+      font-size: large;
+      text-align: center;
+      position: absolute;
+      top: 40%;
+      left: 70%;
+      color: #fff;
+      background-color: #211010;
+      padding: 1%;
+      border-radius: 20px;
+      cursor: pointer;
+    }
+
+    .ctn_03 {
+      position: relative;
+    }
+
+    .ctn_03 img {
+      width: 100%;
+      display: block;
+    }
+
+    .ctn_03 p {
+      font-family: "Noto Sans KR", sans-serif;
+      font-weight: 500;
+      font-size: large;
+      text-align: center;
+      position: absolute;
+      top: 40%;
+      left: 70%;
+      color: #fff;
+      background-color: #211010;
+      padding: 1%;
+      border-radius: 20px;
+      cursor: pointer;
+    }
+    /* ------------footer----------- */
+    .ft1 {
+      display: flex;
+      border-top: 1px solid rgba(148, 142, 142, 40%);
+      margin-top: 15px;
+    }
+
+    .ft1_1 {
+      width: 20%;
+    }
+
+    .ft1_2 {
+      display: flex;
+      width: 60%;
+      justify-content: center;
+      gap: 20px;
+      margin-bottom: 2px;
+      margin-top: 5px;
+      cursor: pointer;
+    }
+
+    .ft1_3 {
+      width: 20%;
+    }
+
+    .ft2 {
+      display: flex;
+    }
+
+    .ft2_1 {
+      width: 33.3%;
+      display: flex;
+      justify-content: center;
+      align-items: center;
+    }
+
+    .ft2_1 > img {
+      width: 80px;
+      height: 80px;
+    }
+
+    .ft2_2 {
+      width: 33.3%;
+      text-align: center;
+      margin: 20px;
+    }
+
+    .ft2_3 {
+      text-align: center;
+      width: 33.3%;
+    }
+
+    .ft2_3a {
+      font-family: "Noto Sans KR", sans-serif;
+      font-weight: 900;
+    }
+    .ft3_1 {
+      text-align: center;
+      font-size: small;
+      font-style: italic;
+    }
+
+    .ft2_3c {
+      font-family: "Noto Sans KR", sans-serif;
+      font-weight: 900;
+    }
+
+    span {
+      font-size: 40px;
+    }
+  </style>
+  <body>
+    <div class="wrap">
+      <!-- header -->
+      <div class="header">
+        <div class="logo">
+          <img src="img2/logo/logo.jpg" alt="메인페이지" />
+        </div>
+        <div class="nav">
+          <div class="nav1">
+            <div>
+              <p>
+                <a href="index.html" target="메인페이지">소개</a>
+              </p>
+            </div>
+          </div>
+          <div class="nav2">
+            <div>
+              <p>
+                <a href="page1.html" target="서비스페이지">서비스</a>
+              </p>
+            </div>
+          </div>
+          <div class="nav3">
+            <div>
+              <p>
+                <a href="page2.html" target="요양보험페이지"> 요양보험 </a>
+              </p>
+            </div>
+          </div>
+          <div class="nav4">
+            <div>
+              <p>
+                <a href="page3.html" target="돌봄신청페이지">돌봄신청 </a>
+              </p>
+            </div>
+          </div>
+        </div>
+        <div class="info">
+          <div class="log">
+            <p><a href="#">로그인</a></p>
+          </div>
+          <div class="member">
+            <p><a href="#">회원가입</a></p>
+          </div>
+        </div>
+      </div>
+      <div class="sub_me">
+        <div class="sub1"></div>
+        <div class="sub2">
+          <div class="sub2a">
+            <div><p>메뉴1</p></div>
+            <div><p>메뉴2</p></div>
+            <div><p>메뉴3</p></div>
+          </div>
+          <div class="sub2b">
+            <div><p>메뉴1</p></div>
+            <div><p>메뉴2</p></div>
+            <div><p>메뉴3</p></div>
+          </div>
+          <div class="sub2c">
+            <div><p>메뉴1</p></div>
+            <div><p>메뉴2</p></div>
+            <div><p>메뉴3</p></div>
+          </div>
+          <div class="sub2d">
+            <div><p>메뉴1</p></div>
+            <div><p>메뉴2</p></div>
+            <div><p>메뉴3</p></div>
+          </div>
+        </div>
+        <div class="sub3"></div>
+      </div>
+      <!-- main -->
+      <div class="main_wrap">
+        <div class="menu_btn">
+          <p>소개</p>
+          <p>자격</p>
+          <p>비용</p>
+        </div>
+        <div class="ctn">
+          <div><img src="page4/1.png" alt="" /></div>
+          <p>
+            <span>돌봄서비스란 무엇인가요? <br /></span>
+            2008년 7월 1일부터 시행된 국가 돌봄서비스<br />
+            노화 등에 따라 거동이 불편한 사람에 대하여 신체활동이나
+            일상가사활동을 지속적으로 지원함<br />
+            노후의 건강유지 및 가족의 부담을 덜어줌으로써 국민의 삶의 질을
+            향상하도록 함을 목적으로 시행되는 사회보험제도입니다
+          </p>
+        </div>
+        <div class="ctn_02">
+          <div><img src="page4/2.png" alt="" /></div>
+          <p>
+            노인돌봄서비스 자격은 무엇인가요? <br />
+            돌봄서비스가 필요한 65세 이상 <br />①국민기초생활 수급자<br />
+            ②차상위 계층<br />
+            ③기초연금수급자<br />
+            중복사업 자격에 해당되지 않은 자를 대상으로 합니다.
+          </p>
+        </div>
+        <div class="ctn_03">
+          <div><img src="page4/3.png" alt="" /></div>
+          <p>
+            서비스 가격 (정부지원금 및 본인부담금) <br />
+            서비스가격 월 27시간 (9일)<br />
+            차상위 계층 월 264,600원 <br />기초생활수급자 월 264,600원 <br />
+            월 36시간 (12일)<br />
+            130%이상 ~ 150%이하 월 352,800원 <br />
+            100%이상 ~ 130%이하 월 352,800원
+          </p>
+        </div>
+      </div>
+      <!-- footer -->
+      <div class="footer">
+        <div class="ft1">
+          <div class="ft1_1"></div>
+          <div class="ft1_2">
+            <div class="ft1_2a"><p>회사소개</p></div>
+            <div class="ft1_2b"><p>이용약관</p></div>
+            <div class="ft1_2c"><p>개인정보처리방침</p></div>
+            <div class="ft1_2d"><p>제휴문의</p></div>
+          </div>
+          <div class="ft1_3"></div>
+        </div>
+        <div class="ft2">
+          <div class="ft2_1">
+            <img src="img2/logo/logo.jpg" alt="로고이미지" />
+          </div>
+          <div class="ft2_2">
+            <div><p>(주)노인정보시스템</p></div>
+            <div><p>대표: 이동건</p></div>
+            <div><p>사업자등록번호: 591-03-12345</p></div>
+            <div><p>서울특별시 마포구 상수동</p></div>
+          </div>
+          <div class="ft2_3">
+            <div class="ft2_3a"><p>고객센터 운영시간</p></div>
+            <div class="ft2_3b">
+              <p>
+                운영시간 : 월~금 오전 9:00 ~ 오후 16:30 <br />
+                점심시간 오후 12:00 ~ 오후 13:30 (주말 및 공휴일 휴무)
+              </p>
+            </div>
+            <div class="ft2_3c"><p>고객센터 연락처</p></div>
+            <div class="ft2_3d"><p>010-123-4567</p></div>
+          </div>
+        </div>
+        <div class="ft3">
+          <p class="ft3_1">Copyright ⓒ00Company Inc. All rights reserved</p>
+        </div>
+      </div>
+      <div class="RM"></div>
+    </div>
+    <script src="page3.js"></script>
+  </body>
+</html>

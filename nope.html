@@ -1,0 +1,639 @@
+<!DOCTYPE html>
+<html lang="ko">
+  <head>
+    <meta charset="UTF-8" />
+    <meta http-equiv="X-UA-Compatible" content="IE=edge" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <script src="https://code.jquery.com/jquery-3.7.1.js"></script>
+    <title>노인정보</title>
+  </head>
+  <style>
+    @import url("https://fonts.googleapis.com/css2?family=Noto+Sans+KR:wght@100..900&display=swap");
+
+    * {
+      margin: 0;
+      padding: 0;
+    }
+    a {
+      text-decoration: none;
+      outline: none;
+      color: inherit;
+    }
+
+    p {
+      font-family: "Noto Sans KR", sans-serif;
+    }
+    /* header */
+    .header {
+      display: flex;
+      position: relative;
+    }
+    .logo {
+      width: 15%;
+      text-align: center;
+      align-content: center;
+    }
+
+    .logo > img {
+      width: 100%;
+      height: 100%;
+    }
+
+    .nav {
+      width: 70%;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      gap: 50px;
+      z-index: 3;
+    }
+    .nav p {
+      width: 80px;
+      text-align: center;
+      cursor: pointer;
+    }
+    .nav > div {
+      font-family: "Noto Sans KR", sans-serif;
+      font-weight: 600;
+    }
+
+    .info {
+      width: 15%;
+      display: flex;
+      justify-content: center;
+      align-items: center;
+      gap: 10px;
+    }
+
+    .sub_me {
+      /* display: flex; */
+      margin-top: 20px;
+      display: none;
+      position: absolute;
+      width: 100%;
+      top: 50px;
+      left: 0px;
+      background-color: rgba(255, 255, 255, 0.685);
+      z-index: 1;
+    }
+
+    .sub1 {
+      width: 15%;
+    }
+
+    .sub2 {
+      width: 70%;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      gap: 50px;
+    }
+
+    .sub2 p {
+      width: 80px;
+      text-align: center;
+      color: black;
+      cursor: pointer;
+    }
+
+    .sub3 {
+      width: 15%;
+    }
+
+    /* main */
+    .main {
+      width: 70%;
+      margin: 0 auto;
+    }
+    .mainwrap {
+      height: 30vw;
+      position: relative;
+    }
+    .mainwrap img {
+      width: 70vw;
+      position: absolute;
+      left: 0;
+      top: 0;
+    }
+    .content1 {
+      margin-top: 50px;
+      display: flex;
+    }
+
+    .content1-1 {
+      width: 40%;
+    }
+
+    .content1-2 {
+      width: 60%;
+    }
+
+    .content1-2 > img {
+      width: 100%;
+    }
+
+    .content1-1a {
+      height: 50%;
+    }
+
+    .content1-1a > p {
+      text-align: center;
+      height: 100%;
+      align-content: center;
+      font-weight: 600;
+      font-size: larger;
+    }
+
+    .content1-1a > p > a {
+      background-color: #588fe2;
+      color: white;
+      border-radius: 10px;
+      padding: 10px 20px;
+    }
+
+    .content1-1b {
+      text-align: center;
+      height: 50%;
+    }
+
+    .content1-1b > div:nth-child(1) {
+      font-family: "Noto Sans KR", sans-serif;
+      font-weight: 800;
+      font-size: smaller;
+    }
+
+    .content1-1b > div:nth-child(2) {
+      font-family: "Noto Sans KR", sans-serif;
+      font-weight: 900;
+      font-size: x-large;
+    }
+
+    .content1-1b > div:nth-child(3) {
+      font-family: "Noto Sans KR", sans-serif;
+      font-weight: 900;
+      font-size: x-large;
+      color: #588fe2;
+    }
+
+    .content2 {
+      display: flex;
+    }
+
+    .content2-1 {
+      width: 40%;
+    }
+
+    .content2-2 {
+      width: 60%;
+    }
+
+    .content2-1a {
+      height: 50%;
+    }
+
+    .content2-1a > p {
+      text-align: center;
+      height: 100%;
+      align-content: center;
+      font-weight: 600;
+      font-size: larger;
+    }
+
+    .content2-1a > p > a {
+      background-color: #e49191;
+      color: white;
+      border-radius: 10px;
+      padding: 10px 20px;
+    }
+
+    .content2-1b {
+      height: 50%;
+      text-align: center;
+    }
+
+    .content2-1b > div:nth-child(2) {
+      font-family: "Noto Sans KR", sans-serif;
+      font-weight: 900;
+      font-size: x-large;
+      color: #e49191;
+    }
+    .content2-1b > div:nth-child(3) {
+      font-family: "Noto Sans KR", sans-serif;
+      font-weight: 900;
+      font-size: x-large;
+    }
+    .content2-1b > div:nth-child(4) {
+      font-family: "Noto Sans KR", sans-serif;
+      font-weight: 800;
+      font-size: smaller;
+    }
+    .content2-2 > img {
+      width: 100%;
+    }
+    .content3 {
+      display: flex;
+    }
+
+    .content3-1 {
+      width: 40%;
+    }
+
+    .content3-2 {
+      width: 60%;
+    }
+
+    .content3-2 > img {
+      width: 100%;
+    }
+
+    .content3-1a {
+      height: 50%;
+    }
+
+    .content3-1a > p {
+      text-align: center;
+      height: 100%;
+      align-content: center;
+      font-weight: 600;
+      font-size: larger;
+    }
+
+    .content3-1a > p > a {
+      background-color: #eb7c16;
+      color: white;
+      border-radius: 10px;
+      padding: 10px 20px;
+    }
+
+    .content3-1b {
+      height: 50%;
+      text-align: center;
+    }
+
+    .content3-1b > div:nth-child(1) {
+      font-family: "Noto Sans KR", sans-serif;
+      font-weight: 800;
+      font-size: smaller;
+      color: #eb7c16;
+    }
+
+    .content3-1b > div:nth-child(2) {
+      font-family: "Noto Sans KR", sans-serif;
+      font-weight: 900;
+      font-size: x-large;
+    }
+    .content3-1b > div:nth-child(3) {
+      font-family: "Noto Sans KR", sans-serif;
+      font-weight: 900;
+      font-size: x-large;
+    }
+
+    .content3-1b > div:nth-child(4) {
+      font-family: "Noto Sans KR", sans-serif;
+      font-weight: 500;
+      font-size: smaller;
+    }
+
+    .btn {
+      position: fixed;
+      top: 60%;
+      left: 92%;
+      cursor: pointer;
+    }
+
+    .bt1 img,
+    .bt2 img {
+      width: 30px;
+    }
+    /* footer */
+    .footer1 {
+      border-top: 1px solid black;
+      display: flex;
+    }
+
+    .footer1-1 {
+      width: 20%;
+    }
+
+    .footer1-1a {
+      height: 25%;
+      align-content: center;
+      font-weight: 700;
+    }
+
+    .footer1-1b {
+      height: 25%;
+      align-content: center;
+      font-weight: 700;
+    }
+
+    .footer1-1c {
+      height: 25%;
+      align-content: center;
+      font-weight: 700;
+    }
+
+    .footer1-1d {
+      height: 25%;
+      align-content: center;
+      font-weight: 700;
+    }
+
+    .footer1-2 {
+      width: 40%;
+    }
+
+    .footer1-2 > div:nth-child(1) {
+      font-weight: 700;
+    }
+
+    .footer1-3 {
+      width: 40%;
+    }
+
+    .footer1-3 > div:nth-child(2),
+    .footer1-3 > div:nth-child(4) {
+      margin-bottom: 20px;
+    }
+
+    .footer1-3 > div:nth-child(1),
+    .footer1-3 > div:nth-child(3) {
+      margin-top: 20px;
+    }
+
+    .footer1-3 > div:nth-child(2) {
+      font-family: "Noto Sans KR", sans-serif;
+      font-weight: 900;
+      font-size: smaller;
+    }
+
+    .footer1-3 > div:nth-child(3) {
+      font-family: "Noto Sans KR", sans-serif;
+      font-weight: 900;
+      font-size: small;
+    }
+
+    .footer1-3-1 {
+      display: flex;
+    }
+
+    .footer1-3-1a > p {
+      font-family: "Noto Sans KR", sans-serif;
+      font-weight: 900;
+      font-size: small;
+    }
+
+    .footer1-3-1b > img {
+      width: 16px;
+      height: 16px;
+    }
+
+    .footer-1-3-2 {
+      display: flex;
+    }
+
+    .footer-1-3-2a > img {
+      width: 16px;
+      height: 16px;
+    }
+
+    .footer2 {
+      text-align: center;
+    }
+  </style>
+  <body>
+    <div class="wrap">
+      <div class="header">
+        <div class="logo"><img src="/img/logo.png" alt="" /></div>
+        <div class="nav">
+          <div class="nav1">
+            <div>
+              <p>소개</p>
+            </div>
+          </div>
+          <div class="nav2">
+            <div>
+              <p>서비스</p>
+            </div>
+          </div>
+          <div class="nav3">
+            <div>
+              <p>요양보험</p>
+            </div>
+          </div>
+          <div class="nav4">
+            <div>
+              <p>돌봄신청</p>
+            </div>
+          </div>
+        </div>
+        <div class="info">
+          <div class="log">
+            <p><a href="#">로그인</a></p>
+          </div>
+          <div class="member">
+            <p><a href="#">회원가입</a></p>
+          </div>
+        </div>
+      </div>
+      <div class="sub_me">
+        <div class="sub1"></div>
+        <div class="sub2">
+          <div class="sub2a">
+            <div><p>메뉴1</p></div>
+            <div><p>메뉴2</p></div>
+            <div><p>메뉴3</p></div>
+          </div>
+          <div class="sub2b">
+            <div><p>메뉴1</p></div>
+            <div><p>메뉴2</p></div>
+            <div><p>메뉴3</p></div>
+          </div>
+          <div class="sub2c">
+            <div><p>메뉴1</p></div>
+            <div><p>메뉴2</p></div>
+            <div><p>메뉴3</p></div>
+          </div>
+          <div class="sub2d">
+            <div><p>메뉴1</p></div>
+            <div><p>메뉴2</p></div>
+            <div><p>메뉴3</p></div>
+          </div>
+        </div>
+        <div class="sub3"></div>
+      </div>
+    </div>
+    <!-- main -->
+    <div class="main">
+      <div class="mainwrap">
+        <div class="main_img"><img src="/img/main.png" alt="이미지" /></div>
+        <div class="main_img"><img src="/img/main2.jpg" alt="이미지" /></div>
+        <div class="main_img"><img src="/img/main3.jpg" alt="이미지" /></div>
+        <div class="main_img"><img src="/img/main4.jpg" alt="이미지" /></div>
+      </div>
+
+      <!-- content1 -->
+      <div class="content1">
+        <div class="content1-2"><img src="/img/content1.png" alt="" /></div>
+        <div class="content1-1">
+          <div class="content1-1a">
+            <p><a href="#">복지서비스 알아보기</a></p>
+          </div>
+          <div class="content1-1b">
+            <div><p>100만명이 받은 복지혜택 저도 받았어요</p></div>
+            <div><p>부모님과 나를위한,</p></div>
+            <div><p>복지서비스</p></div>
+            <div>
+              <p>
+                65세부터 꼭 혜택 받으세요! 복지혜택 확인하기<br />
+                이로움ON에서 5분이면 가능해요<br />
+                신청부터 상담까지 한번에!
+              </p>
+            </div>
+          </div>
+        </div>
+      </div>
+      <!-- content2 -->
+      <div class="content2">
+        <div class="content2-1">
+          <div class="content2-1a">
+            <p><a href="#">노인장기요양보험 알아보기</a></p>
+          </div>
+          <div class="content2-1b">
+            <div><p>신청방법부터 등급별 혜택까지</p></div>
+            <div><p>노인장기요양보험</p></div>
+            <div><p>차근 차근 배워보세요</p></div>
+            <div>
+              <p>
+                우리 부모님은 지원대상일까요? <br />
+                어떤 요양 서비스와 용품이 제공 될까요?
+              </p>
+            </div>
+          </div>
+        </div>
+        <div class="content2-2">
+          <img src="/img/content2.jpg" alt="" />
+        </div>
+      </div>
+      <!-- content3 -->
+      <div class="content3">
+        <div class="content3-2"><img src="/img/content3.jpg" alt="" /></div>
+        <div class="content3-1">
+          <div class="content3-1a">
+            <p><a href="#">돌봄 신청하기</a></p>
+          </div>
+          <div class="content3-1b">
+            <div><p>어르신 돌봄</p></div>
+            <div><p>혼자 계시지 않도록</p></div>
+            <div><p>돌봄 신청</p></div>
+            <div>
+              <p>
+                집에 혼자 계신 어르신이 걱정되세요? <br />
+                돌봄 서비스로 걱정을 덜어드릴게요.
+              </p>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+
+    <div class="btn">
+      <div class="bt1"><img src="img/up.png" alt="" /></div>
+      <div class="bt2"><img src="img/down.png" alt="" /></div>
+    </div>
+
+    <!-- footer -->
+    <div class="footer">
+      <div class="footer1">
+        <div class="footer1-1">
+          <div class="footer1-1a">
+            <p><a href="#">회사소개</a></p>
+          </div>
+          <div class="footer1-1b">
+            <p><a href="#">이용약관</a></p>
+          </div>
+          <div class="footer1-1c">
+            <p><a href="#">정보처리방침</a></p>
+          </div>
+          <div class="footer1-1d">
+            <p><a href="#">제휴/입점문의</a></p>
+          </div>
+        </div>
+        <div class="footer1-2">
+          <div><p>(주)노인정보시스템</p></div>
+          <div><p>대표: 이동건</p></div>
+          <div class="footer1-2-1">
+            <div class="footer1-2-1a"><p>사업자등록번호: 591-03-12345</p></div>
+            <div class="footer1-2-1b">
+              <p><a href="#">사업자정보확인</a></p>
+            </div>
+          </div>
+          <div><p>서울특별시 마포구 상수동</p></div>
+          <div><p>서울특별시 마포구 상수동</p></div>
+        </div>
+        <div class="footer1-3">
+          <div class="footer1-3-1">
+            <div class="footer1-3-1a"><p>고객센터</p></div>
+            <div class="footer1-3-1b">
+              <img src="img/Fill 282.png" alt="아이콘" />
+            </div>
+          </div>
+          <div>
+            <p>
+              운영시간 : 월~금 오전 9:00 ~ 오후 16:30 점심시간 오후 12:00 ~ 오후
+              13:30 (주말 및 공휴일 휴무)
+            </p>
+          </div>
+          <div><p>고객센터 연락처</p></div>
+          <div class="footer-1-3-2">
+            <div class="footer-1-3-2a">
+              <img src="img/Fill 217.png" alt="아이콘2" />
+            </div>
+            <div class="footer-1-3-2b"><p>010-123-4567</p></div>
+          </div>
+        </div>
+      </div>
+      <div class="footer2">
+        <p>Copyright ⓒ00Company Inc. All rights reserved</p>
+      </div>
+    </div>
+    <script>
+      $(function () {
+        $(".nav").mouseover(function () {
+          $(".sub_me").stop().slideDown();
+          $(".sub_me").css("display", "flex");
+        });
+        $(".sub_me").mouseleave(function () {
+          $(".sub_me").stop().slideUp();
+          $(".sub_me").css("display", "flex");
+        });
+      });
+    </script>
+    <script>
+      $(function () {
+        let i = 0;
+        $(".main_img").hide().first().show();
+
+        setInterval(function () {
+          let ni = (i + 1) % 4;
+          $(".main_img").eq(i).fadeOut(2000);
+          $(".main_img").eq(ni).fadeIn(2000);
+          i = ni;
+        }, 3000);
+      });
+    </script>
+    <script>
+      $(".bt1").click(function () {
+        let i = $(this).index();
+        let t = $(".wrap").eq(i).offset().top;
+        $("html").stop().animate({ scrollTop: t }, 500);
+      });
+
+      $(".bt2").click(function () {
+        let i = $(this).index();
+        let t = $(".footer").offset().top;
+        $("html").stop().animate({ scrollTop: t }, 500);
+      });
+    </script>
+  </body>
+</html>
